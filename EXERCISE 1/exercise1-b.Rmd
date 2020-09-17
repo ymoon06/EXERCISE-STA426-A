@@ -1,0 +1,74 @@
+---
+title: "exercise1-b"
+author: "YB Moon"
+date: '2020 9 16 '
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Create 100 samples from a log normal distribution
+
+
+
+```{r samples}
+set.seed(6)
+x <- rlnorm(100, meanlog = 1, sdlog = 0.25)
+print(x)
+```
+
+
+## Create a histogram of the distribution and the distribution on the log scale
+```{r histX}
+#hist(x, main= paste("Histogram of samples from log normal distribution"))
+#hist(log(x),main=paste("Histogram of samples from log normal distribution on log scale"))
+
+library(ggplot2)
+qplot(x, geom="histogram",
+      binwidth=0.04,
+      log="", 
+      main="Histogram of samples from log normal distribution", 
+      xlab="sample", 
+      ylab="frequency",
+      fill=I("blue"),
+      col=I("red"))
+qplot(x, 
+      geom="histogram",
+      binwidth=0.04,
+      log="x",
+      main="Histogram of samples from log normal distribution on log scale",
+      xlab="sample on logscale",
+      ylab="frequency",
+      fill=I("green"),
+      col=I("yellow"))
+
+
+
+```
+
+
+
+
+## report mean and variance of the sample in line in the text.
+
+```{r}
+print(mean(x))
+print(var(x))
+print(sd(x))
+
+
+mean.samples<-mean(x)
+variance.samples<-var(x)
+```
+
+mean of samples is `r mean.samples`
+and variance of samples is `r variance.samples`
+
+
+
+
+
+
+
